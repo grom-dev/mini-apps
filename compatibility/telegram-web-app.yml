@@ -1,0 +1,35 @@
+source:
+  repo: MarshalX/telegram-crawler
+  ref: 35bc2854cd5d00d4c87740e514b969f2721beb09
+  path: data/web/telegram.org/js/telegram-web-app.js
+
+coverage:
+  - lines: 1-2,277-280,3330-3332
+    ignore: true
+
+  - lines: 104-126,265
+    ignore: true
+    comment: urlAppendHashParams is not used.
+
+  - lines: 202-232
+    ignore: true
+    comment: openProtoUrl is not used.
+
+  - lines: 858-860,1008-1067,1149-1169,1216-1218,1221-1237,1449-1169
+    ignore: true
+    comment: Debug stuff.
+
+  - lines: 3,21-54,128-200,254-258,270-276
+    comment: Implemented in Bridge module.
+
+  - lines: 929-1006,2705-2708
+    linesExcluded: 958-964
+    comment: Implemented in BackButton module.
+
+  - lines: 1347-1424,2717-2720
+    linesExcluded: 1376-1382
+    comment: Implemented in SettingsButton module.
+
+  - lines: 1426-1470,2721-2724
+    linesExcluded: 1430-1433
+    comment: Implemented in Haptic module.

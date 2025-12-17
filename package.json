@@ -6,14 +6,18 @@
   "packageManager": "pnpm@10.24.0",
   "license": "MIT",
   "scripts": {
-    "deps": "taze --write --interactive --recursive --include-locked",
+    "build": "pnpm -r build",
+    "typecheck": "tsc --build --noEmit",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "deps": "taze --write --interactive --recursive --include-locked"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "6.2.0",
-    "eslint": "9.39.1",
-    "eslint-plugin-format": "1.0.2",
-    "taze": "19.9.2"
+    "@antfu/eslint-config": "6.7.1",
+    "@types/node": "22.19.3",
+    "eslint": "9.39.2",
+    "eslint-plugin-format": "1.1.0",
+    "taze": "19.9.2",
+    "yaml": "2.8.2"
   }
 }

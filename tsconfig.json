@@ -1,0 +1,7 @@
+{
+  "references": [
+    { "path": "./tsconfig.dev.json" },
+    { "path": "./packages/mini-app/tsconfig.json" }
+  ],
+  "files": []
+}

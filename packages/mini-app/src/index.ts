@@ -1,1 +1,5 @@
-export type { IncomingEvents, OutgoingEvents } from './events.ts'
+export * as Bridge from './Bridge.ts'
+export * as Events from './Events.ts'
+export * as BackButton from './modules/BackButton.ts'
+export * as Haptic from './modules/Haptic.ts'
+export * as SettingsButton from './modules/SettingsButton.ts'
