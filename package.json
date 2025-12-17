@@ -10,11 +10,13 @@
     "typecheck": "tsc --build --noEmit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "deps": "taze --write --interactive --recursive --include-locked"
+    "deps": "taze --write --interactive --recursive --include-locked",
+    "release": "bumpp --recursive"
   },
   "devDependencies": {
     "@antfu/eslint-config": "6.7.1",
     "@types/node": "22.19.3",
+    "bumpp": "10.3.2",
     "eslint": "9.39.2",
     "eslint-plugin-format": "1.1.0",
     "taze": "19.9.2",
