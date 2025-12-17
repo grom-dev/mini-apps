@@ -1,5 +1,5 @@
 import type { Bridge } from '../Bridge.ts'
-import type { StoredState } from '../internal/SessionStorage.ts'
+import type { StoredState } from '../SessionStorage.ts'
 import { Store } from '@tanstack/store'
 
 /**
