@@ -1,4 +1,5 @@
 import type { Bridge } from '../Bridge.ts'
+import type { UnsubscribeFn } from '../internal/EventBus.ts'
 import type { StoredState } from '../SessionStorage.ts'
 import { Store } from '@tanstack/store'
 
@@ -7,7 +8,7 @@ import { Store } from '@tanstack/store'
  */
 export interface SettingsButton {
   stateStore: Store<State>
-  onClick: (listener: () => void) => () => void
+  onClick: (listener: () => void) => UnsubscribeFn
   offClick: (listener: any) => void
 }
 
