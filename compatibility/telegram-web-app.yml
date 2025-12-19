@@ -4,7 +4,7 @@ source:
   path: data/web/telegram.org/js/telegram-web-app.js
 
 coverage:
-  - lines: 1-2,277-280,3330-3332
+  - lines: 1-2,248-251,259,261,268,277-280,281-282,2619-2621,3288,3330-3332
     ignore: true
 
   - lines: 104-126,265
@@ -19,8 +19,20 @@ coverage:
     ignore: true
     comment: Debug stuff.
 
+  - lines: 56-102,262-264
+    comment: Implemented in Url module.
+
+  - lines: 234-246,266-267
+    comment: Implemented in SessionStorage module.
+
   - lines: 3,21-54,128-200,254-258,270-276
     comment: Implemented in Bridge module.
+
+  - lines: 10-19,252,283
+    comment: Implemented in InitParams module.
+
+  - lines: 287-290,298-310,337-342,2623-2638
+    comment: Implemented in LaunchParams module.
 
   - lines: 929-1006,2705-2708
     linesExcluded: 958-964
