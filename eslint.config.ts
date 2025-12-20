@@ -11,6 +11,11 @@ export default antfu({
   rules: {
     'antfu/top-level-function': 'off',
     'ts/no-empty-object-type': 'off',
-    'style/operator-linebreak': ['error', 'after'],
+    'style/operator-linebreak': ['error', 'before', {
+      overrides: {
+        '&&': 'after',
+        '||': 'after',
+      },
+    }],
   },
 })

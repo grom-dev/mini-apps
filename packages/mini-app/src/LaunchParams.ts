@@ -1,10 +1,10 @@
-import type { InitParams } from './InitParams'
-import * as Url from './internal/Url'
+import type { InitParams } from './InitParams.ts'
+import * as Url from './internal/Url.ts'
 
 export interface LaunchParams {
   initData: InitData | null
   initDataRaw: string
-  theme: Theme
+  themeParams: ThemeParams
   defaultColors: Record<string, string>
   version: string
   platform: string
@@ -26,7 +26,7 @@ export interface InitData {
   can_send_after?: number
 }
 
-export interface Theme {
+export interface ThemeParams {
   bg_color?: string
   text_color?: string
   hint_color?: string
@@ -127,11 +127,18 @@ export const init = (options: {
   initParams: InitParams
 }): LaunchParams => {
   const { initParams } = options
-  const initDataRaw = initParams.tgWebAppData ?? ''
   return {
-    initDataRaw,
-    initData: Url.parseQueryStringWithNestedObjects(initDataRaw) as any,
-    theme: (() => {
+    ...(() => {
+      const initDataRaw = initParams.tgWebAppData || ''
+      if (initDataRaw.length > 0) {
+        return {
+          initDataRaw,
+          initData: Url.parseQueryStringWithNestedObjects(initDataRaw) as any,
+        }
+      }
+      return { initDataRaw, initData: null }
+    })(),
+    themeParams: (() => {
       if (initParams.tgWebAppThemeParams) {
         try {
           return JSON.parse(initParams.tgWebAppThemeParams)

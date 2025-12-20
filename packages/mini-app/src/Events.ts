@@ -1,3 +1,5 @@
+import type { ThemeParams } from './LaunchParams.ts'
+
 /**
  * Event types that can be received by the mini app from the client.
  *
@@ -7,6 +9,10 @@ export interface IncomingEventMap {
   back_button_pressed: void
 
   settings_button_pressed: void
+
+  theme_changed: {
+    theme_params: ThemeParams
+  }
 }
 
 /**

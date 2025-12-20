@@ -6,13 +6,13 @@
     "module": "nodenext",
     "typeRoots": ["./node_modules/@types"],
     "types": ["node"],
-    "allowJs": false,
     "declaration": false,
-    "declarationMap": false,
-    "noEmit": true
+    "noEmit": true,
+    "isolatedDeclarations": false
   },
   "include": [
     "./*.config.*",
+    "./tsdown-base.ts",
     "./compatibility/cli.ts"
   ]
 }

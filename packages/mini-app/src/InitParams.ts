@@ -1,5 +1,5 @@
-import type { StoredState } from './SessionStorage'
-import * as Url from './internal/Url'
+import type { StoredState } from './SessionStorage.ts'
+import * as Url from './internal/Url.ts'
 
 export type InitParams = Record<string, string | null>
 
