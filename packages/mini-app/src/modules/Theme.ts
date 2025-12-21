@@ -44,6 +44,7 @@ export const init = (options: {
   })
   colorSchemeStore.mount()
   paletteStore.mount()
+  bridge.emit('web_app_request_theme')
   return { paletteStore, colorSchemeStore }
 }
 
