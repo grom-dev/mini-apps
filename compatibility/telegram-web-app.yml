@@ -22,6 +22,9 @@ coverage:
   - lines: 56-102,262-264
     comment: Implemented in Url module.
 
+  - lines: 864-893
+    comment: Implemented in Color module.
+
   - lines: 234-246,266-267
     comment: Implemented in SessionStorage module.
 
@@ -31,8 +34,11 @@ coverage:
   - lines: 10-19,252,283
     comment: Implemented in InitParams module.
 
-  - lines: 287-290,298-310,337-342,2623-2638
+  - lines: 287,289-290,298-310,337-342,2623-2638
     comment: Implemented in LaunchParams module.
+
+  - lines: 288,311-323,459-470,472,475-478,2639-2646,3303,3326
+    comment: Implemented in Theme module.
 
   - lines: 929-1006,2705-2708
     linesExcluded: 958-964
