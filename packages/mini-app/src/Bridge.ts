@@ -6,8 +6,13 @@ import * as EventBus from './internal/EventBus.ts'
  */
 export interface Bridge extends Pick<EventBus.EventBus<IncomingEventMap>, 'on' | 'off' | 'once'> {
   emit: <TEvent extends keyof OutgoingEventMap>(
-    event: TEvent,
-    payload: OutgoingEventMap[TEvent],
+    // workaround to make TS allow omitting optional payloads
+    // see: https://github.com/microsoft/TypeScript/issues/29131
+    ...args: (
+      [void] extends [OutgoingEventMap[TEvent]]
+        ? Parameters<(event: TEvent, payload?: OutgoingEventMap[TEvent]) => void>
+        : Parameters<(event: TEvent, payload: OutgoingEventMap[TEvent]) => void>
+    )
   ) => void
 }
 
@@ -20,7 +25,7 @@ export const connect = (): Bridge => {
   }
   const w = window as any
   //////////////////////////////////////////////////////////////////////////////
-  const emit: Bridge['emit'] = (() => {
+  const emit = (() => {
     if (w.TelegramWebviewProxy !== undefined) {
       return (eventType, eventData) => {
         w.TelegramWebviewProxy.postEvent(eventType, JSON.stringify(eventData))
@@ -35,7 +40,7 @@ export const connect = (): Bridge => {
       return emitViaPostMessage
     }
     throw new Error('Could not determine the post event method.')
-  })()
+  })() as Bridge['emit']
   //////////////////////////////////////////////////////////////////////////////
   const receiveEvent = incomingEventBus.dispatch.bind(incomingEventBus)
   // 1 (iframe)
