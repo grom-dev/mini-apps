@@ -21,6 +21,18 @@ export interface IncomingEventMap {
  * @see https://core.telegram.org/api/web-events#event-apis
  */
 export interface OutgoingEventMap {
+  web_app_close: void | {
+    return_back?: boolean
+  }
+
+  web_app_expand: void
+
+  web_app_request_viewport: void
+
+  web_app_request_theme: void
+
+  web_app_ready: void
+
   web_app_setup_back_button: {
     is_visible: boolean
   }
