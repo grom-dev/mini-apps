@@ -42,6 +42,8 @@ export const init = (options: {
     fn: ({ currDepVals: [palette] }) => palette.bg_color ? Color.isDark(palette.bg_color) ? 'dark' : 'light' : 'light',
     deps: [paletteStore],
   })
+  colorSchemeStore.mount()
+  paletteStore.mount()
   return { paletteStore, colorSchemeStore }
 }
 
