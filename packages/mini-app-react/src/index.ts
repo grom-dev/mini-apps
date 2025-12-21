@@ -1,3 +1,5 @@
+export type { MiniApp } from './context.ts'
+export { MiniAppContext } from './context.ts'
 export { useBackButton } from './hooks/useBackButton.ts'
 export type { UseBackButtonOptions } from './hooks/useBackButton.ts'
 export { useMiniApp } from './hooks/useMiniApp.ts'
