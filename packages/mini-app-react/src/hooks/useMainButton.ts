@@ -38,5 +38,5 @@ export function useMainButton({
     if (onClick) {
       return mainButton.onClick(onClick)
     }
-  }, [onClick])
+  }, [mainButton, onClick])
 }

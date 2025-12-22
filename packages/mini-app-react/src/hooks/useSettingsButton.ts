@@ -13,10 +13,10 @@ export function useSettingsButton({
   const { settingsButton } = useMiniApp()
   useEffect(() => {
     settingsButton.stateStore.setState({ visible })
-  }, [visible])
+  }, [settingsButton, visible])
   useEffect(() => {
     if (onClick) {
       return settingsButton.onClick(onClick)
     }
-  }, [onClick])
+  }, [settingsButton, onClick])
 }
