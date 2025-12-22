@@ -8,6 +8,8 @@ import type { ThemeParams } from './LaunchParams.ts'
 export interface IncomingEventMap {
   main_button_pressed: void
 
+  secondary_button_pressed: void
+
   back_button_pressed: void
 
   settings_button_pressed: void
@@ -43,6 +45,17 @@ export interface OutgoingEventMap {
     text_color?: string
     is_progress_visible?: boolean
     has_shine_effect?: boolean
+  }
+
+  web_app_setup_secondary_button: {
+    is_visible?: boolean
+    is_active?: boolean
+    text: string
+    color?: string
+    text_color?: string
+    is_progress_visible?: boolean
+    has_shine_effect?: boolean
+    position?: 'left' | 'right' | 'top' | 'bottom'
   }
 
   web_app_setup_back_button: {

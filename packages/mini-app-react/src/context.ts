@@ -2,6 +2,7 @@ import type {
   BackButton,
   Haptic,
   MainButton,
+  SecondaryButton,
   SettingsButton,
   Theme,
 } from '@grom.js/mini-app'
@@ -12,6 +13,7 @@ export interface MiniApp {
   backButton: BackButton.BackButton
   settingsButton: SettingsButton.SettingsButton
   mainButton: MainButton.MainButton
+  secondaryButton: SecondaryButton.SecondaryButton
   theme: Theme.Theme
   haptic: Haptic.Haptic
 }
