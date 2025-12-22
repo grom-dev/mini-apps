@@ -6,6 +6,8 @@ import type { ThemeParams } from './LaunchParams.ts'
  * @see https://core.telegram.org/api/bots/webapps#incoming-events-client-to-mini-app
  */
 export interface IncomingEventMap {
+  main_button_pressed: void
+
   back_button_pressed: void
 
   settings_button_pressed: void
@@ -32,6 +34,16 @@ export interface OutgoingEventMap {
   web_app_request_theme: void
 
   web_app_ready: void
+
+  web_app_setup_main_button: {
+    is_visible?: boolean
+    is_active?: boolean
+    text: string
+    color?: string
+    text_color?: string
+    is_progress_visible?: boolean
+    has_shine_effect?: boolean
+  }
 
   web_app_setup_back_button: {
     is_visible: boolean

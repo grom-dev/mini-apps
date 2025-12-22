@@ -1,10 +1,17 @@
-import type { BackButton, Haptic, SettingsButton, Theme } from '@grom.js/mini-app'
+import type {
+  BackButton,
+  Haptic,
+  MainButton,
+  SettingsButton,
+  Theme,
+} from '@grom.js/mini-app'
 import type { Context } from 'react'
 import { createContext } from 'react'
 
 export interface MiniApp {
   backButton: BackButton.BackButton
   settingsButton: SettingsButton.SettingsButton
+  mainButton: MainButton.MainButton
   theme: Theme.Theme
   haptic: Haptic.Haptic
 }
