@@ -7,7 +7,7 @@ export function toHex(color: string): string | null {
   if (match) {
     return (`#${match[1]}${match[1]}${match[2]}${match[2]}${match[3]}${match[3]}`).toLowerCase()
   }
-  match = /^\s*rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*\d+(?:\.\d*)?)?\)\s*$/.exec(color)
+  match = /^\s*rgb\(\s*(\d+)[,\s]+(\d+)[,\s]+(\d+)\s*\)\s*$/.exec(color)
   if (match) {
     const rgb = [match[1]!, match[2]!, match[3]!]
       .map(ch => Number.parseInt(ch))
