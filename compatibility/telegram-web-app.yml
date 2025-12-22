@@ -37,12 +37,25 @@ coverage:
   - lines: 287,289-290,298-310,337-342,2623-2638
     comment: Implemented in LaunchParams module.
 
-  - lines: 288,311-323,459-470,472,475-478,2639-2646,3303,3326
-    comment: Implemented in Theme module.
+  - lines: 288,311-323,459-478,2639-2646,3303,3326
+    comment: >
+      Implemented in Theme module.
+
+      Notes:
+        1. Custom CSS properties are not set.
 
   - lines: 929-1006,2705-2708
     linesExcluded: 958-964
     comment: Implemented in BackButton module.
+
+  - lines: 1070-1147,1171-1215,1219,1239-1345,2709-2716
+    comment: >
+      Implemented in MainButton and SecondaryButton modules.
+
+      Notes:
+        1. Parameters validation is not implemented — they are passed as is.
+        2. has_shine_effect param value does not depend on other params.
+        3. Press events are propagated independently from buttons' `is_active` param state.
 
   - lines: 1347-1424,2717-2720
     linesExcluded: 1376-1382
