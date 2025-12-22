@@ -2,8 +2,8 @@ import { useEffect } from 'react'
 import { useMiniApp } from './useMiniApp'
 
 export interface UseMainButtonOptions {
-  text: string
-  visible: boolean
+  text?: string
+  visible?: boolean
   loading?: boolean
   active?: boolean
   shining?: boolean
@@ -25,8 +25,8 @@ export function useMainButton({
   const { mainButton } = useMiniApp()
   useEffect(() => {
     mainButton.stateStore.setState(prev => ({
-      text,
-      visible,
+      text: text ?? prev.text,
+      visible: visible ?? prev.visible,
       loading: loading ?? prev.loading,
       active: active ?? prev.active,
       shining: shining ?? prev.shining,
