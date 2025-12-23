@@ -1,9 +1,9 @@
-import type { Bridge } from '../Bridge'
-import type { UnsubscribeFn } from '../internal/EventBus'
-import type { StoredState } from '../SessionStorage'
-import type { Theme } from './Theme'
+import type { Bridge } from './Bridge.ts'
+import type { UnsubscribeFn } from './internal/EventBus.ts'
+import type { StoredState } from './SessionStorage.ts'
+import type { Theme } from './Theme.ts'
 import { Effect, Store } from '@tanstack/store'
-import * as Color from '../internal/Color'
+import * as Color from './internal/Color.ts'
 
 /**
  * Module for controlling secondary button.

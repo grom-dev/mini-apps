@@ -1,8 +1,8 @@
-import type { Bridge } from '../Bridge.ts'
-import type { LaunchParams, ThemeParams } from '../LaunchParams.ts'
-import type { StoredState } from '../SessionStorage.ts'
+import type { Bridge } from './Bridge.ts'
+import type { LaunchParams, ThemeParams } from './LaunchParams.ts'
+import type { StoredState } from './SessionStorage.ts'
 import { Derived, Store } from '@tanstack/store'
-import * as Color from '../internal/Color.ts'
+import * as Color from './internal/Color.ts'
 
 export interface Theme {
   paletteStore: Derived<Palette>

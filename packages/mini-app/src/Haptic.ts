@@ -1,5 +1,5 @@
-import type { Bridge } from '../Bridge.ts'
-import type { OutgoingEventMap } from '../Events.ts'
+import type { Bridge } from './Bridge.ts'
+import type { OutgoingEventMap } from './Events.ts'
 
 /**
  * Module for controlling haptic feedback.
