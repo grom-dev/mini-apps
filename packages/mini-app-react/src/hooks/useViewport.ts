@@ -18,7 +18,7 @@ export interface UseViewportReturn {
 
 export function useViewport({
   onChange,
-}: UseViewportOptions): UseViewportReturn {
+}: UseViewportOptions = {}): UseViewportReturn {
   const { viewport } = useMiniApp()
   const stableHeight = useStore(viewport.stateStore, state => state.stableHeight)
   const expanded = useStore(viewport.stateStore, state => state.expanded)
