@@ -1,4 +1,5 @@
 import type { DefaultTheme } from 'vitepress'
+import process from 'node:process'
 import { defineConfig } from 'vitepress'
 
 const guideSidebar: Array<DefaultTheme.SidebarItem> = [
@@ -80,6 +81,9 @@ const featuresSidebar: Array<DefaultTheme.SidebarItem> = [
 
 export default defineConfig({
   title: 'Grom Mini Apps',
+  description: 'Modern SDK for crafting Telegram Mini Apps.',
+  base: process.env.BASE_URL || '/',
+  cleanUrls: true,
   themeConfig: {
     search: {
       provider: 'local',

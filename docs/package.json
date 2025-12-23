@@ -4,7 +4,9 @@
   "version": "0.3.0",
   "private": true,
   "scripts": {
-    "dev": "vitepress dev"
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
   },
   "devDependencies": {
     "vitepress": "2.0.0-alpha.15",

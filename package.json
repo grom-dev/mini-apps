@@ -6,7 +6,7 @@
   "packageManager": "pnpm@10.24.0",
   "license": "MIT",
   "scripts": {
-    "build": "pnpm -r build",
+    "build": "pnpm -r --filter=!docs build",
     "typecheck": "tsc --build --noEmit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
