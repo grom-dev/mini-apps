@@ -74,7 +74,7 @@ export const init = (options: {
       height,
       stableHeight: is_state_stable ? height : prev.stableHeight,
       expanded: is_expanded,
-      resizing: is_state_stable,
+      resizing: !is_state_stable,
     }))
   })
   bridge.on('safe_area_changed', ({ top, bottom, left, right }) => {
