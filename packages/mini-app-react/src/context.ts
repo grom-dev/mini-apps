@@ -5,11 +5,13 @@ import type {
   SecondaryButton,
   SettingsButton,
   Theme,
+  Viewport,
 } from '@grom.js/mini-app'
 import type { Context } from 'react'
 import { createContext } from 'react'
 
 export interface MiniApp {
+  viewport: Viewport.Viewport
   backButton: BackButton.BackButton
   settingsButton: SettingsButton.SettingsButton
   mainButton: MainButton.MainButton

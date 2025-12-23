@@ -14,8 +14,28 @@ export interface IncomingEventMap {
 
   settings_button_pressed: void
 
+  viewport_changed: {
+    height: number
+    is_state_stable: boolean
+    is_expanded: boolean
+  }
+
   theme_changed: {
     theme_params: ThemeParams
+  }
+
+  safe_area_changed: {
+    top: number
+    bottom: number
+    left: number
+    right: number
+  }
+
+  content_safe_area_changed: {
+    top: number
+    bottom: number
+    left: number
+    right: number
   }
 }
 
@@ -70,4 +90,8 @@ export interface OutgoingEventMap {
     | { type: 'impact', impact_style: 'light' | 'medium' | 'heavy' | 'rigid' | 'soft' }
     | { type: 'notification', notification_type: 'error' | 'success' | 'warning' }
     | { type: 'selection_change' }
+
+  web_app_request_safe_area: void
+
+  web_app_request_content_safe_area: void
 }

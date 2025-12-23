@@ -5,6 +5,10 @@ export type { MiniApp } from './context.ts'
 export { MiniAppContext } from './context.ts'
 export { useMiniApp } from './hooks/useMiniApp.ts'
 
+// viewport
+export type { UseViewportOptions, UseViewportReturn } from './hooks/useViewport.ts'
+export { useViewport } from './hooks/useViewport.ts'
+
 // theme
 export type { UseThemeReturn } from './hooks/useTheme.ts'
 export { useTheme } from './hooks/useTheme.ts'
