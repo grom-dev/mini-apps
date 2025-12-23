@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 import * as fs from 'node:fs/promises'
 import * as process from 'node:process'
 import * as yaml from 'yaml'
