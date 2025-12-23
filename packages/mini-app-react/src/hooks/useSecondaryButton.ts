@@ -4,8 +4,8 @@ import { useMiniApp } from './useMiniApp'
 export interface UseSecondaryButtonOptions {
   text?: string
   visible?: boolean
-  loading?: boolean
   active?: boolean
+  loading?: boolean
   shining?: boolean
   position?: 'left' | 'right' | 'top' | 'bottom'
   bgColor?: string | null

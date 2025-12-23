@@ -17,8 +17,8 @@ export interface MainButton {
 export interface State {
   text: string
   visible: boolean
-  loading: boolean
   active: boolean
+  loading: boolean
   shining: boolean
   bgColor: string | null
   textColor: string | null
