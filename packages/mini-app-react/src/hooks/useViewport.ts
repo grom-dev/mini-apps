@@ -38,6 +38,6 @@ export function useViewport({
     resizing,
     safeAreaInset,
     contentSafeAreaInset,
-    expand: viewport.expand.bind(viewport),
+    expand: viewport.expand,
   }
 }
