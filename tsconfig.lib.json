@@ -2,7 +2,7 @@
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "target": "es2020",
-    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "lib": ["ES2024", "DOM", "DOM.Iterable"],
     "baseUrl": ".",
     "rootDir": ".",
     "module": "esnext",

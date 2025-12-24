@@ -9,6 +9,10 @@ export { useMiniApp } from './hooks/useMiniApp.ts'
 export type { UseViewportOptions, UseViewportReturn } from './hooks/useViewport.ts'
 export { useViewport } from './hooks/useViewport.ts'
 
+// fullscreen
+export type { UseFullscreenReturn } from './hooks/useFullscreen.ts'
+export { useFullscreen } from './hooks/useFullscreen.ts'
+
 // theme
 export type { UseThemeReturn } from './hooks/useTheme.ts'
 export { useTheme } from './hooks/useTheme.ts'

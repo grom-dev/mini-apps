@@ -1,5 +1,6 @@
 import type {
   BackButton,
+  Fullscreen,
   Haptic,
   MainButton,
   SecondaryButton,
@@ -12,6 +13,7 @@ import { createContext } from 'react'
 
 export interface MiniApp {
   viewport: Viewport.Viewport
+  fullscreen: Fullscreen.Fullscreen
   backButton: BackButton.BackButton
   settingsButton: SettingsButton.SettingsButton
   mainButton: MainButton.MainButton

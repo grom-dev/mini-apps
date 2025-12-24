@@ -15,9 +15,19 @@ export const make = (options: {
   const { storage, transformKey } = options
   return {
     storedState: (key: string) => ({
-      save: state => storage.setItem(transformKey(key), JSON.stringify(state)),
-      load: () => JSON.parse(storage.getItem(transformKey(key)) || 'null'),
-      clear: () => storage.removeItem(transformKey(key)),
+      save: (state) => {
+        storage.setItem(transformKey(key), JSON.stringify(state))
+      },
+      load: () => {
+        const stored = storage.getItem(transformKey(key))
+        if (stored) {
+          return JSON.parse(stored)
+        }
+        return null
+      },
+      clear: () => {
+        storage.removeItem(transformKey(key))
+      },
     }),
   }
 }

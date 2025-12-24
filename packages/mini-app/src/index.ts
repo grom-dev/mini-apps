@@ -1,6 +1,7 @@
 export * as BackButton from './BackButton.ts'
 export * as Bridge from './Bridge.ts'
 export * as Events from './Events.ts'
+export * as Fullscreen from './Fullscreen.ts'
 export * as Haptic from './Haptic.ts'
 export * as InitParams from './InitParams.ts'
 export * as LaunchParams from './LaunchParams.ts'
