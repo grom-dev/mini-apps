@@ -1,5 +1,5 @@
 ---
-title: Webview Bridge
+title: WebView Bridge
 ---
 
 _TBD_

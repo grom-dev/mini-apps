@@ -17,7 +17,7 @@ const featuresSidebar: Array<DefaultTheme.SidebarItem> = [
     text: 'Core',
     items: [
       { text: 'Launch Parameters', link: '/features/launch-params' },
-      { text: 'Webview Bridge', link: '/features/bridge' },
+      { text: 'WebView Bridge', link: '/features/bridge' },
     ],
   },
   {
@@ -50,11 +50,11 @@ const featuresSidebar: Array<DefaultTheme.SidebarItem> = [
       { text: 'Biometrics', link: '/features/biometrics' },
       { text: 'Geolocation', link: '/features/geolocation' },
       { text: 'Motion Tracking', link: '/features/motion-tracking' },
-      { text: 'QR-Scanner', link: '/features/qr-scanner' },
+      { text: 'QR Scanner', link: '/features/qr-scanner' },
       { text: 'File Downloads', link: '/features/file-downloads' },
       { text: 'Virtual Keyboard', link: '/features/virtual-keyboard' },
       { text: 'Clipboard', link: '/features/clipboard' },
-      { text: 'Homescreen', link: '/features/homescreen' },
+      { text: 'Home Screen', link: '/features/home-screen' },
       { text: 'Hardware Information', link: '/features/hardware-info' },
     ],
   },

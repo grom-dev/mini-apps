@@ -1,5 +1,5 @@
 ---
-title: QR-Scanner
+title: QR Scanner
 ---
 
 _TBD_
