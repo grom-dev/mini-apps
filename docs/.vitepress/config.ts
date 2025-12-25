@@ -89,8 +89,16 @@ export default defineConfig({
       provider: 'local',
     },
     nav: [
-      { text: 'Guide', link: '/guide/getting-started' },
-      { text: 'Features', link: '/features/overview' },
+      {
+        text: 'Guide',
+        link: '/guide/getting-started',
+        activeMatch: '^/guide',
+      },
+      {
+        text: 'Features',
+        link: '/features/overview',
+        activeMatch: '^/features',
+      },
       {
         text: 'Telegram',
         items: [
