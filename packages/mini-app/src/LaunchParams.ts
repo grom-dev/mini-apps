@@ -158,27 +158,24 @@ export const init = ({
       }
       return { initDataRaw, initData: null }
     })(),
-    themeParams: (() => {
-      if (initParams.tgWebAppThemeParams) {
-        try {
-          return JSON.parse(initParams.tgWebAppThemeParams)
-        }
-        catch {}
-      }
-      return {}
-    })(),
-    defaultColors: (() => {
-      if (initParams.tgWebAppDefaultColors) {
-        try {
-          return JSON.parse(initParams.tgWebAppDefaultColors)
-        }
-        catch {}
-      }
-      return {}
-    })(),
+    themeParams: parseJsonOrFallback<ThemeParams>(initParams.tgWebAppThemeParams, {}),
+    defaultColors: parseJsonOrFallback<Record<string, string>>(initParams.tgWebAppDefaultColors, {}),
     version: initParams.tgWebAppVersion || '6.0',
     platform: initParams.tgWebAppPlatform || 'unknown',
     fullscreen: Boolean(initParams.tgWebAppFullscreen),
     isInlineBot: Boolean(initParams.tgWebAppBotInline),
   }
+}
+
+function parseJsonOrFallback<T>(
+  encoded: string | null | undefined,
+  fallback: NoInfer<T>,
+): NoInfer<T> {
+  try {
+    if (encoded) {
+      return JSON.parse(encoded)
+    }
+  }
+  catch {}
+  return fallback
 }
