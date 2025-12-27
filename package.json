@@ -6,7 +6,10 @@
   "packageManager": "pnpm@10.24.0",
   "license": "MIT",
   "scripts": {
-    "build": "pnpm -r --filter=!docs build",
+    "docs:dev": "pnpm run -C ./docs/ dev",
+    "docs:build": "pnpm run -C ./docs/ build",
+    "docs:preview": "pnpm run -C ./docs/ preview",
+    "build": "pnpm run --recursive --filter=!docs build",
     "typecheck": "tsc --build --noEmit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
