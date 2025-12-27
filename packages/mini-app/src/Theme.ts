@@ -1,6 +1,6 @@
 import type { Bridge } from './Bridge.ts'
 import type { LaunchParams, ThemeParams } from './LaunchParams.ts'
-import type { StoredState } from './SessionStorage.ts'
+import type { SessionStorage } from './SessionStorage.ts'
 import { Derived, Store } from '@tanstack/store'
 import * as Color from './internal/Color.ts'
 
@@ -14,16 +14,17 @@ export type Palette = ThemeParams
 export type ColorScheme = 'light' | 'dark'
 
 export interface InitOptions {
-  bridge: Bridge
+  storage: SessionStorage
   launchParams: LaunchParams
-  storedState: StoredState<ThemeParams>
+  bridge: Bridge
 }
 
 export const init = ({
-  bridge,
+  storage,
   launchParams,
-  storedState,
+  bridge,
 }: InitOptions): Theme => {
+  const storedState = storage.storedState<ThemeParams>('Theme')
   const paramsStore = new Store<ThemeParams>({}, {
     onUpdate: () => {
       storedState.save(paramsStore.state)

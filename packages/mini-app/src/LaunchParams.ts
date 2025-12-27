@@ -128,8 +128,8 @@ interface State {
 }
 
 export interface InitOptions {
-  locationHash: string
   storage: SessionStorage
+  locationHash: string
 }
 
 export const init = ({

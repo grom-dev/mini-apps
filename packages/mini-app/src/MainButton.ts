@@ -1,6 +1,6 @@
 import type { Bridge } from './Bridge.ts'
 import type { UnsubscribeFn } from './internal/EventBus.ts'
-import type { StoredState } from './SessionStorage.ts'
+import type { SessionStorage } from './SessionStorage.ts'
 import type { Theme } from './Theme.ts'
 import { Effect, Store } from '@tanstack/store'
 import * as Color from './internal/Color.ts'
@@ -35,16 +35,17 @@ const INITIAL_STATE: State = {
 }
 
 export interface InitOptions {
+  storage: SessionStorage
   bridge: Bridge
   theme: Theme
-  storedState: StoredState<State>
 }
 
 export const init = ({
+  storage,
   bridge,
   theme,
-  storedState,
 }: InitOptions): MainButton => {
+  const storedState = storage.storedState<State>('MainButton')
   const stateStore = new Store<State>(storedState.load() ?? INITIAL_STATE)
   stateStore.subscribe(({ currentVal }) => {
     storedState.save(currentVal)

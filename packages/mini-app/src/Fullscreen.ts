@@ -1,6 +1,6 @@
 import type { Bridge } from './Bridge.ts'
 import type { LaunchParams } from './LaunchParams.ts'
-import type { StoredState } from './SessionStorage.ts'
+import type { SessionStorage } from './SessionStorage.ts'
 import { Store } from '@tanstack/store'
 
 /**
@@ -19,16 +19,17 @@ export interface State {
 }
 
 export interface InitOptions {
+  storage: SessionStorage
   launchParams: LaunchParams
   bridge: Bridge
-  storedState: StoredState<State>
 }
 
 export const init = ({
   launchParams,
   bridge,
-  storedState,
+  storage,
 }: InitOptions): Fullscreen => {
+  const storedState = storage.storedState<State>('Fullscreen')
   const stored = storedState.load()
   const stateStore = new Store<State>({ state: stored?.state ?? stateFromBool(launchParams.fullscreen) })
   stateStore.subscribe(({ currentVal }) => {

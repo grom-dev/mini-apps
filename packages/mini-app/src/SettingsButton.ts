@@ -1,6 +1,6 @@
 import type { Bridge } from './Bridge.ts'
 import type { UnsubscribeFn } from './internal/EventBus.ts'
-import type { StoredState } from './SessionStorage.ts'
+import type { SessionStorage } from './SessionStorage.ts'
 import { Store } from '@tanstack/store'
 
 /**
@@ -17,14 +17,15 @@ export interface State {
 }
 
 export interface InitOptions {
+  storage: SessionStorage
   bridge: Bridge
-  storedState: StoredState<State>
 }
 
 export const init = ({
+  storage,
   bridge,
-  storedState,
 }: InitOptions): SettingsButton => {
+  const storedState = storage.storedState<State>('SettingsButton')
   const stateStore = new Store<State>(storedState.load() ?? { visible: false })
   stateStore.subscribe(({ currentVal }) => {
     bridge.emit('web_app_setup_settings_button', { is_visible: currentVal.visible })
