@@ -15,7 +15,7 @@ hero:
 features:
   - icon: 🦾
     title: Modern
-    details: TypeScript, package managers, promises, reactivity, frameworks, documentation — yes.
+    details: TypeScript, package managers, promises, reactivity, frameworks — yes.
   - icon: 🍌
     title: Simple
     details: Intuitive API with minimal learning curve to start building quickly.
