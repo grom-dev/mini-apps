@@ -1,4 +1,4 @@
-import type { InitParams } from './InitParams.ts'
+import type { SessionStorage } from './SessionStorage.ts'
 import * as Url from './internal/Url.ts'
 
 export interface LaunchParams {
@@ -123,13 +123,30 @@ export interface Chat {
   photo_url?: string
 }
 
+interface State {
+  initParams: Record<string, string | null>
+}
+
 export interface InitOptions {
-  initParams: InitParams
+  locationHash: string
+  storage: SessionStorage
 }
 
 export const init = ({
-  initParams,
+  locationHash,
+  storage,
 }: InitOptions): LaunchParams => {
+  const storedState = storage.storedState<State>('LaunchParams')
+  const initParams = Url.parseHashParams(locationHash)
+  const initParamsStored = storedState.load()?.initParams
+  if (initParamsStored) {
+    for (const [name, storedValue] of Object.entries(initParamsStored)) {
+      if (initParams[name] === undefined) {
+        initParams[name] = storedValue
+      }
+    }
+  }
+  storedState.save({ initParams })
   return {
     ...(() => {
       const initDataRaw = initParams.tgWebAppData || ''
