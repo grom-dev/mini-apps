@@ -8,11 +8,15 @@ export interface StoredState<TState> {
   clear: () => void
 }
 
-export const make = (options: {
+export interface InitOptions {
   storage: Pick<Storage, 'setItem' | 'getItem' | 'removeItem'>
   transformKey: (key: string) => string
-}): SessionStorage => {
-  const { storage, transformKey } = options
+}
+
+export const make = ({
+  storage,
+  transformKey,
+}: InitOptions): SessionStorage => {
   return {
     storedState: (key: string) => ({
       save: (state) => {

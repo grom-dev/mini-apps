@@ -13,12 +13,17 @@ export type Palette = ThemeParams
 
 export type ColorScheme = 'light' | 'dark'
 
-export const init = (options: {
+export interface InitOptions {
   bridge: Bridge
   launchParams: LaunchParams
   storedState: StoredState<ThemeParams>
-}): Theme => {
-  const { bridge, launchParams, storedState } = options
+}
+
+export const init = ({
+  bridge,
+  launchParams,
+  storedState,
+}: InitOptions): Theme => {
   const paramsStore = new Store<ThemeParams>({}, {
     onUpdate: () => {
       storedState.save(paramsStore.state)

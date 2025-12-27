@@ -16,11 +16,15 @@ export interface State {
   visible: boolean
 }
 
-export const init = (options: {
+export interface InitOptions {
   bridge: Bridge
   storedState: StoredState<State>
-}): SettingsButton => {
-  const { bridge, storedState } = options
+}
+
+export const init = ({
+  bridge,
+  storedState,
+}: InitOptions): SettingsButton => {
   const stateStore = new Store<State>(storedState.load() ?? { visible: false })
   stateStore.subscribe(({ currentVal }) => {
     bridge.emit('web_app_setup_settings_button', { is_visible: currentVal.visible })

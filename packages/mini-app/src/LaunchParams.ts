@@ -123,10 +123,13 @@ export interface Chat {
   photo_url?: string
 }
 
-export const init = (options: {
+export interface InitOptions {
   initParams: InitParams
-}): LaunchParams => {
-  const { initParams } = options
+}
+
+export const init = ({
+  initParams,
+}: InitOptions): LaunchParams => {
   return {
     ...(() => {
       const initDataRaw = initParams.tgWebAppData || ''

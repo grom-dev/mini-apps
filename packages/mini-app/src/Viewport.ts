@@ -32,10 +32,13 @@ export interface State {
   resizing: boolean
 }
 
-export const init = (options: {
+export interface InitOptions {
   bridge: Bridge
-}): Viewport => {
-  const { bridge } = options
+}
+
+export const init = ({
+  bridge,
+}: InitOptions): Viewport => {
   const stateStore = new Store<State>({
     height: window.innerHeight,
     stableHeight: window.innerHeight,

@@ -34,12 +34,17 @@ const INITIAL_STATE: State = {
   textColor: null,
 }
 
-export const init = (options: {
+export interface InitOptions {
   bridge: Bridge
   theme: Theme
   storedState: StoredState<State>
-}): MainButton => {
-  const { bridge, theme, storedState } = options
+}
+
+export const init = ({
+  bridge,
+  theme,
+  storedState,
+}: InitOptions): MainButton => {
   const stateStore = new Store<State>(storedState.load() ?? INITIAL_STATE)
   stateStore.subscribe(({ currentVal }) => {
     storedState.save(currentVal)

@@ -18,35 +18,35 @@ export interface State {
   state: 'fullscreen' | 'not-fullscreen' | 'entering' | 'exiting'
 }
 
-const toState = (value: boolean): State['state'] => (value ? 'fullscreen' : 'not-fullscreen')
-
-export const init = (options: {
+export interface InitOptions {
   launchParams: LaunchParams
   bridge: Bridge
   storedState: StoredState<State>
-}): Fullscreen => {
-  const { launchParams, bridge, storedState } = options
+}
+
+export const init = ({
+  launchParams,
+  bridge,
+  storedState,
+}: InitOptions): Fullscreen => {
   const stored = storedState.load()
-  const stateStore = new Store<State>({ state: stored?.state ?? toState(launchParams.fullscreen) })
+  const stateStore = new Store<State>({ state: stored?.state ?? stateFromBool(launchParams.fullscreen) })
   stateStore.subscribe(({ currentVal }) => {
     storedState.save(currentVal)
   })
-  let request: null | {
-    promise: ReturnType<Fullscreen['setFullscreen']>
-    resolve: (result: Awaited<ReturnType<Fullscreen['setFullscreen']>>) => void
-  } = null
+  let request: null | PromiseWithResolvers<Awaited<ReturnType<Fullscreen['setFullscreen']>>> = null
   bridge.on('fullscreen_changed', ({ is_fullscreen }) => {
-    stateStore.setState({ state: toState(is_fullscreen) })
+    stateStore.setState({ state: stateFromBool(is_fullscreen) })
     if (request) {
       request.resolve({ isFullscreen: is_fullscreen })
       request = null
     }
   })
   bridge.on('fullscreen_failed', ({ error }) => {
-    stateStore.setState({ state: toState(error === 'ALREADY_FULLSCREEN') })
+    stateStore.setState({ state: stateFromBool(error === 'ALREADY_FULLSCREEN') })
     if (request) {
       request.resolve({
-        isFullscreen: stateStore.state.state === 'fullscreen',
+        isFullscreen: boolFromState(stateStore.state.state),
         error,
       })
       request = null
@@ -70,4 +70,12 @@ export const init = (options: {
       return request.promise
     },
   }
+}
+
+function stateFromBool(value: boolean): State['state'] {
+  return value ? 'fullscreen' : 'not-fullscreen'
+}
+
+function boolFromState(state: State['state']): boolean {
+  return state === 'fullscreen'
 }

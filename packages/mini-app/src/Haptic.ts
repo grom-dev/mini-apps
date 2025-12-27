@@ -22,10 +22,13 @@ export type HapticStyle
     | 'notification/warning'
     | 'selection-change'
 
-export const init = (options: {
+export interface InitOptions {
   bridge: Bridge
-}): Haptic => {
-  const { bridge } = options
+}
+
+export const init = ({
+  bridge,
+}: InitOptions): Haptic => {
   return {
     trigger: (style) => {
       bridge.emit('web_app_trigger_haptic_feedback', payloadFromStyle(style))
