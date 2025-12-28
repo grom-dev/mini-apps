@@ -1,0 +1,37 @@
+import type { Bridge } from './Bridge.ts'
+import type { OutgoingEventMap } from './Events.ts'
+import { Store } from '@tanstack/store'
+
+export interface Lifecycle {
+  isActiveStore: Store<boolean>
+  ready: () => void
+  close: (options?: {
+    returnBack?: boolean
+  }) => void
+}
+
+export interface InitOptions {
+  bridge: Bridge
+}
+
+export const init = ({
+  bridge,
+}: InitOptions): Lifecycle => {
+  const isActiveStore = new Store<boolean>(true)
+  bridge.on('visibility_changed', ({ is_visible }) => {
+    isActiveStore.setState(is_visible)
+  })
+  return {
+    isActiveStore,
+    ready: () => {
+      bridge.emit('web_app_ready')
+    },
+    close: (options: Parameters<Lifecycle['close']>[0] = {}) => {
+      const payload: OutgoingEventMap['web_app_close'] = {}
+      if (options.returnBack) {
+        payload.return_back = true
+      }
+      bridge.emit('web_app_close', payload)
+    },
+  }
+}
