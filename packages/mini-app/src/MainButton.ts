@@ -54,7 +54,7 @@ export const init = ({
     fn: () => {
       const state = stateStore.state
       const palette = theme.paletteStore.state
-      bridge.emit('web_app_setup_main_button', {
+      bridge.emit('setup_main_button', {
         text: state.text,
         is_visible: state.visible,
         is_active: state.active,

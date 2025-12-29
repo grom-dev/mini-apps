@@ -50,7 +50,7 @@ export const init = ({
   })
   colorSchemeStore.mount()
   paletteStore.mount()
-  bridge.emit('web_app_request_theme')
+  bridge.emit('request_theme')
   return { paletteStore, colorSchemeStore }
 }
 

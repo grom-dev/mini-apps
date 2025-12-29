@@ -61,11 +61,11 @@ export const init = ({
       }
       if (value) {
         stateStore.setState({ state: 'entering' })
-        bridge.emit('web_app_request_fullscreen')
+        bridge.emit('request_fullscreen')
       }
       else {
         stateStore.setState({ state: 'exiting' })
-        bridge.emit('web_app_exit_fullscreen')
+        bridge.emit('exit_fullscreen')
       }
       request = Promise.withResolvers()
       return request.promise

@@ -40,7 +40,7 @@ export const connect = (): Bridge => {
       return emitViaPostMessage
     }
     throw new Error('Could not determine the post event method.')
-  })() as Bridge['emit']
+  })() as (event: string, payload?: unknown) => void
   //////////////////////////////////////////////////////////////////////////////
   const receiveEvent = incomingEventBus.dispatch.bind(incomingEventBus)
   // 1 (iframe)
@@ -102,6 +102,11 @@ export const connect = (): Bridge => {
     on: incomingEventBus.on.bind(incomingEventBus),
     off: incomingEventBus.off.bind(incomingEventBus),
     once: incomingEventBus.once.bind(incomingEventBus),
-    emit,
+    emit: (event, payload = undefined) => {
+      if (payload === undefined) {
+        payload = '' as any
+      }
+      emit(`web_app_${event}`, payload)
+    },
   }
 }

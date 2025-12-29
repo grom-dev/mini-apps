@@ -28,7 +28,7 @@ export const init = ({
   const storedState = storage.storedState<State>('BackButton')
   const stateStore = new Store<State>(storedState.load() ?? { visible: false })
   stateStore.subscribe(({ currentVal }) => {
-    bridge.emit('web_app_setup_back_button', { is_visible: currentVal.visible })
+    bridge.emit('setup_back_button', { is_visible: currentVal.visible })
     storedState.save(currentVal)
   })
   return {
