@@ -26,7 +26,7 @@ export const init = ({
     ready: () => {
       bridge.emit('web_app_ready')
     },
-    close: (options: Parameters<Lifecycle['close']>[0] = {}) => {
+    close: (options = {}) => {
       const payload: OutgoingEventMap['web_app_close'] = {}
       if (options.returnBack) {
         payload.return_back = true
