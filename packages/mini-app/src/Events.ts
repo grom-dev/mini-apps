@@ -185,13 +185,15 @@ export interface IncomingEventMap {
 /**
  * Event types that can be emitted by the mini app to the client.
  *
+ * **Note**: property names are event types without `web_app_` prefix.
+ *
  * @see https://core.telegram.org/api/web-events#event-apis
  */
 export interface OutgoingEventMap {
-  web_app_close: void | {
+  close: void | {
     return_back?: boolean
   }
-  web_app_open_popup: {
+  open_popup: {
     title?: string
     message: string
     buttons: Array<
@@ -199,70 +201,70 @@ export interface OutgoingEventMap {
       | { type: 'default' | 'destructive', text: string, id: string }
     >
   }
-  web_app_request_write_access: void
-  web_app_request_phone: void
-  web_app_biometry_get_info: void
-  web_app_biometry_request_access: {
+  request_write_access: void
+  request_phone: void
+  biometry_get_info: void
+  biometry_request_access: {
     reason?: string
   }
-  web_app_biometry_update_token: {
+  biometry_update_token: {
     token: string
     reason?: string
   }
-  web_app_biometry_request_auth: {
+  biometry_request_auth: {
     reason?: string
   }
-  web_app_biometry_open_settings: void
-  web_app_invoke_custom_method: {
+  biometry_open_settings: void
+  invoke_custom_method: {
     req_id: string
     method: string
     params: unknown
   }
-  web_app_read_text_from_clipboard: {
+  read_text_from_clipboard: {
     req_id: string
   }
-  web_app_open_scan_qr_popup: {
+  open_scan_qr_popup: {
     text?: string
   }
-  web_app_close_scan_qr_popup: void
-  web_app_setup_closing_behavior: {
+  close_scan_qr_popup: void
+  setup_closing_behavior: {
     need_confirmation: boolean
   }
-  web_app_set_background_color: {
+  set_background_color: {
     color: string
   }
-  web_app_set_header_color: {
+  set_header_color: {
     color_key?: 'bg_color' | 'secondary_bg_color'
     color?: string
   }
-  web_app_data_send: {
+  data_send: {
     data: string
   }
-  web_app_switch_inline_query: {
+  switch_inline_query: {
     query: string
     chat_types: Array<'users' | 'bots' | 'groups' | 'channels'>
   }
-  web_app_trigger_haptic_feedback:
+  trigger_haptic_feedback:
     | { type: 'impact', impact_style: 'light' | 'medium' | 'heavy' | 'rigid' | 'soft' }
     | { type: 'notification', notification_type: 'error' | 'success' | 'warning' }
     | { type: 'selection_change' }
-  web_app_open_link: {
+  open_link: {
     url: string
     try_instant_view?: boolean
     try_browser?: string
   }
-  web_app_open_tg_link: {
+  open_tg_link: {
     path_full: string
     force_request?: boolean
   }
-  web_app_open_invoice: {
+  open_invoice: {
     slug: string
   }
-  web_app_expand: void
-  web_app_request_viewport: void
-  web_app_request_theme: void
-  web_app_ready: void
-  web_app_setup_main_button: {
+  expand: void
+  request_viewport: void
+  request_theme: void
+  ready: void
+  setup_main_button: {
     is_visible?: boolean
     is_active?: boolean
     text: string
@@ -271,19 +273,19 @@ export interface OutgoingEventMap {
     is_progress_visible?: boolean
     has_shine_effect?: boolean
   }
-  web_app_setup_back_button: {
+  setup_back_button: {
     is_visible: boolean
   }
-  web_app_setup_settings_button: {
+  setup_settings_button: {
     is_visible: boolean
   }
-  web_app_setup_swipe_behavior: {
+  setup_swipe_behavior: {
     allow_vertical_swipe: boolean
   }
-  web_app_set_bottom_bar_color: {
+  set_bottom_bar_color: {
     color: string
   }
-  web_app_setup_secondary_button: {
+  setup_secondary_button: {
     is_visible?: boolean
     is_active?: boolean
     text: string
@@ -293,7 +295,7 @@ export interface OutgoingEventMap {
     has_shine_effect?: boolean
     position?: 'left' | 'right' | 'top' | 'bottom'
   }
-  web_app_share_to_story: {
+  share_to_story: {
     media_url: string
     text?: string
     widget_link?: {
@@ -301,71 +303,70 @@ export interface OutgoingEventMap {
       text?: string
     }
   }
-  web_app_request_fullscreen: void
-  web_app_exit_fullscreen: void
-  web_app_start_accelerometer: {
+  request_fullscreen: void
+  exit_fullscreen: void
+  start_accelerometer: {
     refresh_rate?: number
   }
-  web_app_stop_accelerometer: void
-  web_app_start_gyroscope: {
+  stop_accelerometer: void
+  start_gyroscope: {
     refresh_rate?: number
   }
-  web_app_stop_gyroscope: void
-  web_app_start_device_orientation: {
+  stop_gyroscope: void
+  start_device_orientation: {
     refresh_rate?: number
     need_absolute?: boolean
   }
-  web_app_stop_device_orientation: void
-  web_app_add_to_home_screen: void
-  web_app_check_home_screen: void
-  web_app_set_emoji_status: {
+  stop_device_orientation: void
+  add_to_home_screen: void
+  check_home_screen: void
+  set_emoji_status: {
     custom_emoji_id: string
     duration?: number
   }
-  web_app_request_emoji_status_access: void
-  web_app_request_safe_area: void
-  web_app_request_content_safe_area: void
-  web_app_check_location: void
-  web_app_request_location: void
-  web_app_open_location_settings: void
-  web_app_request_file_download: {
+  request_emoji_status_access: void
+  request_safe_area: void
+  request_content_safe_area: void
+  check_location: void
+  request_location: void
+  open_location_settings: void
+  request_file_download: {
     url: string
     filename: string
   }
-  web_app_send_prepared_message: {
+  send_prepared_message: {
     id: string
   }
-  web_app_toggle_orientation_lock: {
+  toggle_orientation_lock: {
     locked?: boolean
   }
-  web_app_device_storage_save_key: {
+  device_storage_save_key: {
     req_id: string
     key: string
     value: string | null
   }
-  web_app_device_storage_get_key: {
+  device_storage_get_key: {
     req_id: string
     key: string
   }
-  web_app_device_storage_clear: {
+  device_storage_clear: {
     req_id: string
   }
-  web_app_secure_storage_save_key: {
+  secure_storage_save_key: {
     req_id: string
     key: string
     value: string | null
   }
-  web_app_secure_storage_get_key: {
+  secure_storage_get_key: {
     req_id: string
     key: string
   }
-  web_app_secure_storage_clear: {
+  secure_storage_clear: {
     req_id: string
   }
-  web_app_secure_storage_restore_key: {
+  secure_storage_restore_key: {
     req_id: string
     key: string
   }
-  web_app_hide_keyboard: void
-
+  hide_keyboard: void
 }

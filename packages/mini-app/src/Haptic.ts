@@ -31,12 +31,12 @@ export const init = ({
 }: InitOptions): Haptic => {
   return {
     trigger: (style) => {
-      bridge.emit('web_app_trigger_haptic_feedback', payloadFromStyle(style))
+      bridge.emit('trigger_haptic_feedback', payloadFromStyle(style))
     },
   }
 }
 
-function payloadFromStyle(style: HapticStyle): OutgoingEventMap['web_app_trigger_haptic_feedback'] {
+function payloadFromStyle(style: HapticStyle): OutgoingEventMap['trigger_haptic_feedback'] {
   switch (style) {
     case 'impact/light': return { type: 'impact', impact_style: 'light' }
     case 'impact/medium': return { type: 'impact', impact_style: 'medium' }

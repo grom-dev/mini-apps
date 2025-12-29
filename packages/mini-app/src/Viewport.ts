@@ -86,15 +86,15 @@ export const init = ({
   bridge.on('content_safe_area_changed', ({ top, bottom, left, right }) => {
     contentSafeAreaInsetStore.setState({ top, bottom, left, right })
   })
-  bridge.emit('web_app_request_viewport')
-  bridge.emit('web_app_request_safe_area')
-  bridge.emit('web_app_request_content_safe_area')
+  bridge.emit('request_viewport')
+  bridge.emit('request_safe_area')
+  bridge.emit('request_content_safe_area')
   return {
     stateStore,
     safeAreaInsetStore,
     contentSafeAreaInsetStore,
     expand: () => {
-      bridge.emit('web_app_expand')
+      bridge.emit('expand')
     },
   }
 }

@@ -24,14 +24,14 @@ export const init = ({
   return {
     isActiveStore,
     ready: () => {
-      bridge.emit('web_app_ready')
+      bridge.emit('ready')
     },
     close: (options = {}) => {
-      const payload: OutgoingEventMap['web_app_close'] = {}
+      const payload: OutgoingEventMap['close'] = {}
       if (options.returnBack) {
         payload.return_back = true
       }
-      bridge.emit('web_app_close', payload)
+      bridge.emit('close', payload)
     },
   }
 }
