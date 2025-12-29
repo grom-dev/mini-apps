@@ -1,5 +1,5 @@
 ---
-title: Theming
+title: Theme
 ---
 
 _TBD_

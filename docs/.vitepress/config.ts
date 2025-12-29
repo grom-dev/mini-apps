@@ -33,7 +33,7 @@ const featuresSidebar: Array<DefaultTheme.SidebarItem> = [
   {
     text: 'Interface',
     items: [
-      { text: 'Theming', link: '/features/theming' },
+      { text: 'Theme', link: '/features/theme' },
       { text: 'Viewport', link: '/features/viewport' },
       { text: 'Fullscreen', link: '/features/fullscreen' },
       { text: 'Bottom Buttons', link: '/features/bottom-buttons' },

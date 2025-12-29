@@ -27,7 +27,7 @@ Essential app lifecycle and behavior controls:
 
 Features for controlling visual elements and appearance of the app:
 
-- [Theming](./theming) — adjust app appearance based on user's color theme.
+- [Theme](./theme) — adjust app appearance based on user's color theme.
 - [Viewport](./viewport) — control viewport dimensions and safe area insets.
 - [Fullscreen](./fullscreen) — control fullscreen mode of the app.
 - [Bottom Buttons](./bottom-buttons) — control main and secondary buttons in the app bottom bar.
