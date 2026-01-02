@@ -1,4 +1,5 @@
 export * as BackButton from './BackButton.ts'
+export * as Behavior from './Behavior.ts'
 export * as Bridge from './Bridge.ts'
 export * as Events from './Events.ts'
 export * as Fullscreen from './Fullscreen.ts'
