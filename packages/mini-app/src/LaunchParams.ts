@@ -2,12 +2,12 @@ import type { SessionStorage } from './SessionStorage.ts'
 import * as Url from './internal/Url.ts'
 
 export interface LaunchParams {
+  version: string
+  platform: string
   initData: InitData | null
   initDataRaw: string
   themeParams: ThemeParams
-  defaultColors: Record<string, string>
-  version: string
-  platform: string
+  defaultColors: DefaultColors
   fullscreen: boolean
   isInlineBot: boolean
 }
@@ -42,6 +42,13 @@ export interface ThemeParams {
   section_separator_color?: string
   subtitle_text_color?: string
   destructive_text_color?: string
+}
+
+export interface DefaultColors {
+  bg_color?: string
+  header_color?: string
+  bg_dark_color?: string
+  header_dark_color?: string
 }
 
 export interface User {
@@ -148,6 +155,8 @@ export const init = ({
   }
   storedState.save({ initParams })
   return {
+    version: initParams.tgWebAppVersion || '6.0',
+    platform: initParams.tgWebAppPlatform || 'unknown',
     ...(() => {
       const initDataRaw = initParams.tgWebAppData || ''
       if (initDataRaw.length > 0) {
@@ -159,9 +168,7 @@ export const init = ({
       return { initDataRaw, initData: null }
     })(),
     themeParams: parseJsonOrFallback<ThemeParams>(initParams.tgWebAppThemeParams, {}),
-    defaultColors: parseJsonOrFallback<Record<string, string>>(initParams.tgWebAppDefaultColors, {}),
-    version: initParams.tgWebAppVersion || '6.0',
-    platform: initParams.tgWebAppPlatform || 'unknown',
+    defaultColors: parseJsonOrFallback<DefaultColors>(initParams.tgWebAppDefaultColors, {}),
     fullscreen: Boolean(initParams.tgWebAppFullscreen),
     isInlineBot: Boolean(initParams.tgWebAppBotInline),
   }
