@@ -13,7 +13,7 @@ export interface InitOptions {
   transformKey: (key: string) => string
 }
 
-export const make = ({
+export const init = ({
   storage,
   transformKey,
 }: InitOptions): SessionStorage => {
