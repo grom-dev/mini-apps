@@ -18,9 +18,7 @@ These are the core modules that most of the features depend on:
 Essential app lifecycle and behavior controls:
 
 - [Lifecycle](./lifecycle) — signal when app is ready, track whether it's active, etc.
-- [Closing Behavior](./closing-behavior) — control app closing behavior.
-- [Swipes Behavior](./swipes-behavior) — control swipe gestures behavior.
-- [Orientation Behavior](./orientation-behavior) — control device orientation lock behavior.
+- [Behavior](./behavior) — control app closing, swipe, and orientation behavior.
 - [Links](./links) — open Telegram and external links.
 
 ## Interface

@@ -24,9 +24,7 @@ const featuresSidebar: Array<DefaultTheme.SidebarItem> = [
     text: 'Essentials',
     items: [
       { text: 'Lifecycle', link: '/features/lifecycle' },
-      { text: 'Closing Behavior', link: '/features/closing-behavior' },
-      { text: 'Swipes Behavior', link: '/features/swipes-behavior' },
-      { text: 'Orientation Behavior', link: '/features/orientation-behavior' },
+      { text: 'Behavior', link: '/features/behavior' },
       { text: 'Links', link: '/features/links' },
     ],
   },
