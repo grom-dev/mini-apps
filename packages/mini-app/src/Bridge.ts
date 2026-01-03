@@ -16,9 +16,14 @@ export interface Bridge extends Pick<EventBus.EventBus<IncomingEventMap>, 'on' |
   ) => void
 }
 
-export const connect = (): Bridge => {
+export interface InitOptions {
+  isIframe: boolean
+}
+
+export const init = ({
+  isIframe,
+}: InitOptions): Bridge => {
   const incomingEventBus = EventBus.make<IncomingEventMap>()
-  const isIframe = (window.parent != null && window !== window.parent)
   const emitViaPostMessage = (eventType: string, eventData?: unknown) => {
     // TODO: Isn't it better to set targetOrigin?
     window.parent.postMessage(JSON.stringify({ eventType, eventData }), '*')
@@ -45,8 +50,8 @@ export const connect = (): Bridge => {
   const receiveEvent = incomingEventBus.dispatch.bind(incomingEventBus)
   // 1 (iframe)
   if (isIframe) {
-    const iFrameStyle = document.createElement('style')
-    document.head.appendChild(iFrameStyle)
+    const iframeStyle = document.createElement('style')
+    document.head.appendChild(iframeStyle)
     window.addEventListener('message', (event) => {
       if (event.source !== window.parent) {
         return
@@ -63,7 +68,7 @@ export const connect = (): Bridge => {
       }
       if (dataParsed.eventType === 'set_custom_style') {
         if (event.origin === 'https://web.telegram.org') {
-          iFrameStyle.innerHTML = dataParsed.eventData
+          iframeStyle.innerHTML = dataParsed.eventData
         }
       }
       else if (dataParsed.eventType === 'reload_iframe') {
