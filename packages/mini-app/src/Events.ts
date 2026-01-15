@@ -265,9 +265,9 @@ export interface OutgoingEventMap {
   request_theme: void
   ready: void
   setup_main_button: {
-    is_visible?: boolean
+    is_visible: boolean
     is_active?: boolean
-    text: string
+    text?: string
     color?: string
     text_color?: string
     is_progress_visible?: boolean
@@ -286,9 +286,9 @@ export interface OutgoingEventMap {
     color: string
   }
   setup_secondary_button: {
-    is_visible?: boolean
+    is_visible: boolean
     is_active?: boolean
-    text: string
+    text?: string
     color?: string
     text_color?: string
     is_progress_visible?: boolean

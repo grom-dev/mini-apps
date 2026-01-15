@@ -18,6 +18,14 @@ export function toHex(color: string): string | null {
   return null
 }
 
+export function toHexUnsafe(color: string): string {
+  const hex = toHex(color)
+  if (hex === null) {
+    throw new Error(`Invalid color format: ${color}`)
+  }
+  return color
+}
+
 export function isDark(hex: string): boolean {
   hex = hex.replace(/[\s#]/g, '')
   if (hex.length === 3) {
