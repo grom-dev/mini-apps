@@ -31,7 +31,7 @@ export const init = ({
 }: InitOptions): Fullscreen => {
   const storedState = storage.storedState<State>('Fullscreen')
   const stored = storedState.load()
-  const stateStore = new Store<State>({ state: stored?.state ?? stateFromBool(launchParams.fullscreen) })
+  const stateStore = new Store<State>({ state: stored?.state ?? stateFromBool(launchParams.isFullscreen) })
   stateStore.subscribe(({ currentVal }) => {
     storedState.save(currentVal)
   })

@@ -4,26 +4,36 @@ import * as Url from './internal/Url.ts'
 export interface LaunchParams {
   version: string
   platform: string
-  initData: InitData | null
-  initDataRaw: string
   themeParams: ThemeParams
   defaultColors: DefaultColors
-  fullscreen: boolean
-  isInlineBot: boolean
+  initData?: InitData
+  initDataRaw?: string
+  isFullscreen: boolean
+  isInline: boolean
 }
 
 export interface InitData {
   auth_date: number
   hash: string
   signature: string
+  start_param?: string
   query_id?: string
-  user?: User
-  receiver?: User
-  chat?: Chat
+  can_send_after?: number
   chat_type?: 'sender' | 'private' | 'group' | 'supergroup' | 'channel'
   chat_instance?: string
-  start_param?: string
-  can_send_after?: number
+  user?: User & {
+    /**
+     * IETF language tag of the user's language.
+     */
+    language_code: string
+  }
+  chat?: Chat
+  receiver?: User & {
+    /**
+     * True, if this user is a bot.
+     */
+    is_bot?: boolean
+  }
 }
 
 export interface ThemeParams {
@@ -58,11 +68,6 @@ export interface User {
   id: number
 
   /**
-   * True, if this user is a bot. Returns in the receiver field only.
-   */
-  is_bot?: boolean
-
-  /**
    * First name of the user or bot.
    */
   first_name: string
@@ -76,11 +81,6 @@ export interface User {
    * Username of the user or bot.
    */
   username?: string
-
-  /**
-   * IETF language tag of the user's language. Returns in user field only.
-   */
-  language_code?: string
 
   /**
    * True, if this user is a Telegram Premium user.
@@ -110,28 +110,28 @@ export interface Chat {
   id: number
 
   /**
-   * Type of chat, can be either "group", "supergroup" or "channel"
+   * Type of the chat.
    */
   type: 'group' | 'supergroup' | 'channel'
 
   /**
-   * Title of the chat
+   * Title of the chat.
    */
   title: string
 
   /**
-   * Username of the chat
+   * Username of the chat.
    */
   username?: string
 
   /**
-   * URL of the chat's photo. The photo can be in .jpeg or .svg formats. Only returned for Mini Apps launched from the attachment menu.
+   * URL of the chat's photo. The photo can be in .jpeg or .svg formats.
    */
   photo_url?: string
 }
 
 interface State {
-  initParams: Record<string, string | null>
+  params: Record<string, string | null>
 }
 
 export interface InitOptions {
@@ -140,37 +140,37 @@ export interface InitOptions {
 }
 
 export const init = ({
-  locationHash,
   storage,
+  locationHash,
 }: InitOptions): LaunchParams => {
   const storedState = storage.storedState<State>('LaunchParams')
-  const initParams = Url.parseHashParams(locationHash)
-  const initParamsStored = storedState.load()?.initParams
-  if (initParamsStored) {
-    for (const [name, storedValue] of Object.entries(initParamsStored)) {
-      if (initParams[name] === undefined) {
-        initParams[name] = storedValue
+  const params = Url.parseHashParams(locationHash)
+  const paramsRestored = storedState.load()?.params
+  if (paramsRestored) {
+    for (const [name, storedValue] of Object.entries(paramsRestored)) {
+      if (params[name] === undefined) {
+        params[name] = storedValue
       }
     }
   }
-  storedState.save({ initParams })
+  storedState.save({ params })
   return {
-    version: initParams.tgWebAppVersion || '6.0',
-    platform: initParams.tgWebAppPlatform || 'unknown',
+    version: params.tgWebAppVersion || '6.0',
+    platform: params.tgWebAppPlatform || 'unknown',
+    themeParams: parseJsonOrFallback<ThemeParams>(params.tgWebAppThemeParams, {}),
+    defaultColors: parseJsonOrFallback<DefaultColors>(params.tgWebAppDefaultColors, {}),
     ...(() => {
-      const initDataRaw = initParams.tgWebAppData || ''
+      const initDataRaw = params.tgWebAppData || ''
       if (initDataRaw.length > 0) {
         return {
           initDataRaw,
           initData: Url.parseQueryStringWithNestedObjects(initDataRaw) as any,
         }
       }
-      return { initDataRaw, initData: null }
+      return {}
     })(),
-    themeParams: parseJsonOrFallback<ThemeParams>(initParams.tgWebAppThemeParams, {}),
-    defaultColors: parseJsonOrFallback<DefaultColors>(initParams.tgWebAppDefaultColors, {}),
-    fullscreen: Boolean(initParams.tgWebAppFullscreen),
-    isInlineBot: Boolean(initParams.tgWebAppBotInline),
+    isFullscreen: Boolean(params.tgWebAppFullscreen),
+    isInline: Boolean(params.tgWebAppBotInline),
   }
 }
 
