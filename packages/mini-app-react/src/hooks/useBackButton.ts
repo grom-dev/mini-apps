@@ -13,7 +13,7 @@ export function useBackButton({
   const { backButton } = useMiniApp()
   useEffect(() => {
     backButton.stateStore.setState({ visible })
-  }, [backButton, visible])
+  }, [backButton.stateStore, visible])
   useEffect(() => {
     if (onClick) {
       return backButton.onClick(onClick)
