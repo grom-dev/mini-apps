@@ -11,6 +11,13 @@ export interface Viewport {
   expand: () => void
 }
 
+export interface State {
+  height: number
+  stableHeight: number
+  expanded: boolean
+  resizing: boolean
+}
+
 export interface SafeAreaInset {
   top: number
   bottom: number
@@ -23,13 +30,6 @@ export interface ContentSafeAreaInset {
   bottom: number
   left: number
   right: number
-}
-
-export interface State {
-  height: number
-  stableHeight: number
-  expanded: boolean
-  resizing: boolean
 }
 
 export interface InitOptions {
@@ -80,11 +80,11 @@ export const init = ({
       resizing: !is_state_stable,
     }))
   })
-  bridge.on('safe_area_changed', ({ top, bottom, left, right }) => {
-    safeAreaInsetStore.setState({ top, bottom, left, right })
+  bridge.on('safe_area_changed', (payload) => {
+    safeAreaInsetStore.setState({ ...payload })
   })
-  bridge.on('content_safe_area_changed', ({ top, bottom, left, right }) => {
-    contentSafeAreaInsetStore.setState({ top, bottom, left, right })
+  bridge.on('content_safe_area_changed', (payload) => {
+    contentSafeAreaInsetStore.setState({ ...payload })
   })
   bridge.emit('request_viewport')
   bridge.emit('request_safe_area')
