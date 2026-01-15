@@ -8,7 +8,7 @@ export interface Haptic {
   /**
    * Triggers haptic feedback of the given style.
    */
-  trigger: (style: HapticStyle) => void
+  vibrate: (style: HapticStyle) => void
 }
 
 export type HapticStyle
@@ -30,7 +30,7 @@ export const init = ({
   bridge,
 }: InitOptions): Haptic => {
   return {
-    trigger: (style) => {
+    vibrate: (style) => {
       bridge.emit('trigger_haptic_feedback', payloadFromStyle(style))
     },
   }
