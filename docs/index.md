@@ -9,7 +9,7 @@ hero:
       text: Get Started
       link: /guide/getting-started
     - theme: alt
-      text: Features Overview
+      text: Explore Features
       link: /features/overview
 
 features:
